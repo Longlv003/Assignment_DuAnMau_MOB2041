@@ -45,7 +45,7 @@ public class ThongKeDoanhThuActivity extends AppCompatActivity {
                 return;
             }
 
-            int doanhThu = databaseHelper.layDoanhThu(ngayBatDau, ngayKetThuc);
+            double doanhThu = databaseHelper.layDoanhThu(ngayBatDau, ngayKetThuc);
             tvDoanhThu.setText("Doanh thu: " + doanhThu + " VND");
         });
     }

@@ -652,16 +652,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Lấy tổng doanh thu từ ngày X đến ngày Y
-    public int layDoanhThu(String ngayBatDau, String ngayKetThuc) {
+    public double layDoanhThu(String ngayBatDau, String ngayKetThuc) {
         SQLiteDatabase db = this.getReadableDatabase();
-        int doanhThu = 0;
+        double doanhThu = 0;
 
         String lenhTruyVan = "SELECT SUM(tongTien) FROM HoaDon WHERE ngayLap BETWEEN ? AND ?";
         try {
             SQLiteStatement statement = db.compileStatement(lenhTruyVan);
             statement.bindString(1, ngayBatDau);
             statement.bindString(2, ngayKetThuc);
-            doanhThu = (int) statement.simpleQueryForLong();
+            doanhThu = (double) statement.simpleQueryForLong();
         } catch (Exception e) {
 //            e.printStackTrace();
         } finally {
