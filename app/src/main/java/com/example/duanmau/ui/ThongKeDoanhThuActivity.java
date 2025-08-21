@@ -45,7 +45,7 @@ public class ThongKeDoanhThuActivity extends AppCompatActivity {
                 return;
             }
 
-            double doanhThu = databaseHelper.layDoanhThu(ngayBatDau, ngayKetThuc);
+            int doanhThu = databaseHelper.layDoanhThu(ngayBatDau, ngayKetThuc);
             tvDoanhThu.setText("Doanh thu: " + doanhThu + " VND");
         });
     }
@@ -68,7 +68,7 @@ public class ThongKeDoanhThuActivity extends AppCompatActivity {
 //                    String selectedDate = selectedYear
 //                            + "-" + String.format("%02d", selectedMonth + 1)
 //                            + "-" + String.format("%02d", selectedDay);
-                    String selectedDate = String.format("%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear);
+                    String selectedDate = String.format("%04d/%02d/%02d", selectedYear, selectedMonth + 1, selectedDay);
                     editText.setText(selectedDate);
                 },
                 year, month, day
