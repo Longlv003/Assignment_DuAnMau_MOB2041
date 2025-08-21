@@ -86,6 +86,10 @@ public class EditSanPhamActivity extends AppCompatActivity {
     private void luuSanPham() {
         maSanPham = edtMaSanPham.getText().toString().trim();
         String tenSanPham = edtTenSanPham.getText().toString().trim();
+        if (tenSanPham.equalsIgnoreCase("")){
+            Toast.makeText(this, "Ten sp ko duoc de trong", Toast.LENGTH_SHORT).show();
+            return;
+        }
         int giaSanPham = Integer.parseInt(edtGiaSanPham.getText().toString().trim());
         int soLuong = Integer.parseInt(edtSoLuong.getText().toString().trim());
         String donViTinh = edtDonViTinh.getText().toString().trim();

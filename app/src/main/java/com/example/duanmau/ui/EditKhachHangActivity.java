@@ -51,9 +51,17 @@ public class EditKhachHangActivity extends AppCompatActivity {
     private void luuKhachHang() {
         String maKhachHang = edtMaKhachHang.getText().toString().trim();
         String tenKhachHang = edtTenKhachHang.getText().toString().trim();
+        if (tenKhachHang.equalsIgnoreCase("")) {
+            Toast.makeText(this, "Ten khach hang ko dươc de trong", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String diaChi = edtDiaChi.getText().toString().trim();
         String soDienThoai = edtSoDienThoai.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
+        if (!email.endsWith("example.com")) {
+            Toast.makeText(this, "email phai ket thu bang \"example.com\"", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         boolean isOK;
         if (type == 0) { // Edit

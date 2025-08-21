@@ -68,6 +68,11 @@ public class DoiMatKhauActivity extends AppCompatActivity {
             Toast.makeText(this, "Mật khẩu cũ không chính xác!", Toast.LENGTH_SHORT).show();
             return;
         }
+        // Mật khẩu mới phải khác với mật khẩu cũ
+        if (matKhauMoi.equals(matKhauCu)) {
+            Toast.makeText(this, "Mật khẩu mới phải khác so với mật khẩu cũ", Toast.LENGTH_SHORT).show();
+            return;
+        }
         // Kiểm tra mật khẩu mới và xác nhận phải giống nhau
         if (!matKhauMoi.equals(nhapLaiMatKhauMoi)) {
             Toast.makeText(this, "Mật khẩu mới không khớp!", Toast.LENGTH_SHORT).show();

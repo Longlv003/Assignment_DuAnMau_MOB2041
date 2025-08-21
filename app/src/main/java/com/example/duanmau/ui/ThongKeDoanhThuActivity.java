@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.duanmau.database.DatabaseHelper;
 import com.example.duanmau.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ThongKeDoanhThuActivity extends AppCompatActivity {
     private EditText edtNgayBatDau, edtNgayKetThuc;
@@ -43,6 +47,19 @@ public class ThongKeDoanhThuActivity extends AppCompatActivity {
             if (ngayBatDau.isEmpty() || ngayKetThuc.isEmpty()) {
                 tvDoanhThu.setText("Vui lòng nhập đầy đủ ngày bắt đầu và ngày kết thúc.");
                 return;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+
+            try {
+                Date startDate = sdf.parse(ngayBatDau);
+                Date endDate = sdf.parse(ngayKetThuc);
+
+                if (startDate.after(endDate) || startDate.equals(endDate)) {
+                    Toast.makeText(this, "Ngày bắt đầu phải trước ngày kết thúc", Toast.LENGTH_SHORT).show();
+                    return; // dừng lại, không tính doanh thu nữa
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
             int doanhThu = databaseHelper.layDoanhThu(ngayBatDau, ngayKetThuc);
